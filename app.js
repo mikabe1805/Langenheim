@@ -41,6 +41,15 @@ const port = process.env.PORT || 3000;
 server.listen(port, () => {
   console.log('Server listening at port %d', port);
 });
+// risky code ahead:
+// const port = 8080;
+// app.get('/', {req,res}=>{
+//   res.send('Hello World');
+// });
+
+// app.listen(port,{}=>{
+//   console.log(`App is listening at http://localhost:${port}`);
+// });
 
 const botName = 'Gallery Hall';
 
