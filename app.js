@@ -1,5 +1,5 @@
 var createError = require('http-errors');
-var express = require('express');
+const express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -27,7 +27,7 @@ var submitRouter = require('./routes/submission');
 var chatRouter = require('./routes/chat');
 var jsonRouter = require('./routes/json');
 var http = require('http');
-var app = express();
+const app = express();
 var cors = require('cors');
 var server = http.createServer(app);
 var io = require('socket.io')(server, {
@@ -162,3 +162,83 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+// // app.js
+const { sequelize, User } = require('./db');
+
+(async () => {
+  try {
+    // Synchronize the model with the database
+    await sequelize.sync({ force: true }); // Use { force: true } to drop and recreate the table
+    console.log('Database synchronized');
+
+    // Create a new user
+    const newUser = await User.create({
+      username: 'john_doe',
+      email: 'john.doe@example.com',
+    });
+    console.log('New user created:', newUser.toJSON());
+
+    // Retrieve all users
+    const allUsers = await User.findAll();
+    console.log('All users:', allUsers.map(user => user.toJSON()));
+
+    // Update user
+    await newUser.update({
+      username: 'updated_john_doe',
+    });
+    console.log('User updated:', newUser.toJSON());
+
+    // Delete user
+    await newUser.destroy();
+    console.log('User deleted');
+
+    // Close the database connection
+    await sequelize.close();
+  } catch (error) {
+    console.error('Error:', error);
+  }
+})();
+
+
+// app.js
+//const express = require('express');
+const bodyParser = require('body-parser');
+//const { sequelize, User } = require('./db');
+
+//const app = express();
+
+// Middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Serve the registration form
+app.get('/register', (req, res) => {
+  res.sendFile(__dirname + '/registration.html');
+});
+
+// Handle registration form submission
+app.post('/register', async (req, res) => {
+  try {
+    const { username, email } = req.body;
+
+    // Check if the user already exists
+    const existingUser = await User.findOne({ where: { email } });
+    if (existingUser) {
+      return res.send('User already exists.');
+    }
+
+    // Create a new user
+    const newUser = await User.create({ username, email });
+
+    res.send('Registration successful!');
+
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is running at http://localhost:${port}`);
+});

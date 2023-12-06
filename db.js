@@ -1,22 +1,25 @@
-function dbConnect() {
+// db.js
+const { Sequelize, DataTypes } = require('sequelize');
+require('dotenv').config();
 
-const mongoose = require('mongoose')
-const port = process.env.PORT || 3000;
+const sequelize = new Sequelize(process.env.DB_CONNECTION_STRING, {
+  dialect: 'mysql', 
+  logging: false,
+});
 
-const url = 'mongodb://' + port + '/artwork_detail'
+const User = sequelize.define('User', {
+  username: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+    validate: {
+      isEmail: true,
+    },
+  },
+});
 
-mongoose.connect(url, {
-    userNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: true
-})
-
-const connection = mongoose.connection
-connection.once('open', function() {
-    console.log('Database connected...')
-}).catch(function(err){
-    console.log('Connection failed...')
-})
-}
-
-module.exports = dbConnect
+module.exports = { sequelize, User };

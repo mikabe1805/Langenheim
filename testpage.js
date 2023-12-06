@@ -1,3 +1,5 @@
+// im commenting this out for the time being in case of accidental conflicts. Ty christina!!
+/*
 const express = require('express');
 const mysql = require('mysql');
 const app = express();
@@ -52,3 +54,4 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
 });
+//*/
