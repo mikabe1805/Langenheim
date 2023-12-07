@@ -10,6 +10,7 @@ const fs = require('fs');
 const Filter = require('bad-words')
 const RESPONSES_SHEET_ID = '1VEIONwFJ0TQzdLZX41bddhHmM1eNxbRyCiBP2KaYNZA';
 const { auth } = require('express-openid-connect');
+require('dotenv').config()
 
 const formatMessage = require('./utils/messages');
 const {
@@ -157,6 +158,15 @@ hbs.registerHelper('toLowerCase', function(str) {
 const auth0Domain = process.env.AUTH0_DOMAIN;
 const auth0ClientId = process.env.AUTH0_CLIENT_ID;
 const auth0ClientSecret = process.env.AUTH0_CLIENT_SECRET;
+
+const config = {
+  authRequired: false,
+  auth0Logout: true,
+  secret: 'a long, randomly-generated string stored in env',
+  baseURL: 'http://localhost:3000',
+  clientID: 'oVF07LtZ6qQ2LQ0e8Wn2H6Q0wMKgYKwz',
+  issuerBaseURL: 'https://dev-84cd2x8e88zws7ie.us.auth0.com'
+};
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
