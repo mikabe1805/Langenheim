@@ -40,15 +40,15 @@ var io = require('socket.io')(server, {
 const port = process.env.PORT || 3000;
 
 
-// const config = {
-//   authRequired: false,
-//   auth0Logout: true,
-//   secret: process.env.SECRET,
-//   baseURL: process.env.BASEURL,
-//   clientID: process.env.CLIENTID,
-//   issuerBaseURL: process.env.ISSUERBASEURL
-// };
-// app.use(auth(config));
+const config = {
+  authRequired: false,
+  auth0Logout: true,
+  secret: process.env.SECRET,
+  baseURL: process.env.BASEURL,
+  clientID: process.env.CLIENTID,
+  issuerBaseURL: process.env.ISSUERBASEURL
+};
+app.use(auth(config));
 
 
 server.listen(port, () => {
