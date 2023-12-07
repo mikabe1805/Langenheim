@@ -162,11 +162,12 @@ const auth0ClientSecret = process.env.AUTH0_CLIENT_SECRET;
 const config = {
   authRequired: false,
   auth0Logout: true,
-  secret: 'a long, randomly-generated string stored in env',
+  secret: 'TDKFNgud9rWqiFtSNhKaTuusyeI4T2Rcwb-NATLq43dfZd7doCJgfP1Nvtd6Xkrj',
   baseURL: 'http://localhost:3000',
   clientID: 'oVF07LtZ6qQ2LQ0e8Wn2H6Q0wMKgYKwz',
   issuerBaseURL: 'https://dev-84cd2x8e88zws7ie.us.auth0.com'
 };
+app.use(auth(config));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
