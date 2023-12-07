@@ -40,17 +40,6 @@ var io = require('socket.io')(server, {
 const port = process.env.PORT || 3000;
 
 
-const config = {
-  authRequired: false,
-  auth0Logout: true,
-  secret: process.env.SECRET,
-  baseURL: process.env.BASEURL,
-  clientID: process.env.CLIENTID,
-  issuerBaseURL: process.env.ISSUERBASEURL
-};
-app.use(auth(config));
-
-
 server.listen(port, () => {
   console.log('Server listening at port %d', port);
 });
@@ -154,6 +143,16 @@ hbs.registerPartials(__dirname + '/views/partials', function (err) {;});
 hbs.registerHelper('toLowerCase', function(str) {
   return str.toLowerCase();
 });
+
+const config = {
+  authRequired: false,
+  auth0Logout: true,
+  secret: process.env.SECRET,
+  baseURL: process.env.BASEURL,
+  clientID: process.env.CLIENTID,
+  issuerBaseURL: process.env.ISSUERBASEURL
+};
+app.use(auth(config));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
