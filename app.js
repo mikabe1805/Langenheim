@@ -144,15 +144,19 @@ hbs.registerHelper('toLowerCase', function(str) {
   return str.toLowerCase();
 });
 
-const config = {
-  authRequired: false,
-  auth0Logout: true,
-  secret: process.env.SECRET,
-  baseURL: process.env.BASEURL,
-  clientID: process.env.CLIENTID,
-  issuerBaseURL: process.env.ISSUERBASEURL
-};
-app.use(auth(config));
+// const config = {
+//   authRequired: false,
+//   auth0Logout: true,
+//   secret: process.env.SECRET,
+//   baseURL: process.env.BASEURL,
+//   clientID: process.env.CLIENTID,
+//   issuerBaseURL: process.env.ISSUERBASEURL
+// };
+// app.use(auth(config));
+
+const auth0Domain = process.env.AUTH0_DOMAIN;
+const auth0ClientId = process.env.AUTH0_CLIENT_ID;
+const auth0ClientSecret = process.env.AUTH0_CLIENT_SECRET;
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
