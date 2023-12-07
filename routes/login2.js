@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('about', { title: 'The Langenheim', 
+  res.render('login2', { title: 'The Langenheim', 
                         layout: 'layout'});
 });
 
