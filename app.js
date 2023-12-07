@@ -9,6 +9,7 @@ var {google} = require('googleapis');
 const fs = require('fs');
 const Filter = require('bad-words')
 const RESPONSES_SHEET_ID = '1VEIONwFJ0TQzdLZX41bddhHmM1eNxbRyCiBP2KaYNZA';
+const { auth } = require('express-openid-connect');
 
 const formatMessage = require('./utils/messages');
 const {
@@ -37,6 +38,18 @@ var io = require('socket.io')(server, {
   }
 });
 const port = process.env.PORT || 3000;
+
+
+const config = {
+  authRequired: false,
+  auth0Logout: true,
+  secret: process.env.SECRET,
+  baseURL: process.env.BASEURL,
+  clientID: process.env.CLIENTID,
+  issuerBaseURL: process.env.ISSUERBASEURL
+};
+app.use(auth(config));
+
 
 server.listen(port, () => {
   console.log('Server listening at port %d', port);
