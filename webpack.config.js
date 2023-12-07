@@ -2,7 +2,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: './main.js',
+  entry: './routes/auth2.js',
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
