@@ -9,7 +9,7 @@ var {google} = require('googleapis');
 const fs = require('fs');
 const Filter = require('bad-words')
 const RESPONSES_SHEET_ID = '1VEIONwFJ0TQzdLZX41bddhHmM1eNxbRyCiBP2KaYNZA';
-// const { auth } = require('express-openid-connect');
+const { auth } = require('express-openid-connect');
 
 const formatMessage = require('./utils/messages');
 const {
