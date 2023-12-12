@@ -16,12 +16,13 @@
 
 <script>
     // Create Auth0 instance
-    const auth0 = new auth0.WebAuth({
+    const auth0Config({
       domain: 'dev-bhkftzl8wc0atcup.us.auth0.com',
       clientID: 'MvskgbwJ1B5u2qRoyeuFJ9PpiOq6dr46',
-      responseType: 'token id_token',
       redirectUri: 'https://langenheim-a07134ab155c.herokuapp.com',
     });
+
+    const auth0 = new auth0.WebAuth(auth0Config);
 
     // Attach event listener to the login button
     document.getElementById('login-btn').addEventListener('click', () => {
