@@ -14,7 +14,7 @@ var router = express.Router();
 // up until here
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/index', function(req, res, next) {
   res.render('index', { title: 'The Langenheim', 
                         layout: 'layout'});
 });
