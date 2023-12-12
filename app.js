@@ -137,7 +137,7 @@ app.use('/submission',submitRouter);
 app.use('/chat',chatRouter);
 app.use('/json',jsonRouter);
 
-// const { auth } = require('express-openid-connect');
+const { auth } = require('express-openid-connect');
 
 // const config = {
 //   authRequired: false,
