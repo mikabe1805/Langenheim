@@ -25,7 +25,7 @@ var loginRouter = require('./routes/login');
 var launchRouter = require('./routes/loadUnity');
 var submitRouter = require('./routes/submission');
 var chatRouter = require('./routes/chat');
-var login2Router = require('./routes/login2');
+// var login2Router = require('./routes/login2');
 var jsonRouter = require('./routes/json');
 var http = require('http');
 const app = express();
@@ -130,12 +130,32 @@ app.use('/', indexRouter);
 app.use('/artwork', artworkRouter);
 app.use('/about', aboutRouter);
 app.use('/credits', creditsRouter);
-app.use('/login', loginRouter);
-app.use('/login2', login2Router);
+app.use('/login2', loginRouter);
+// app.use('/login2', login2Router);
 app.use('/loadUnity',launchRouter);
 app.use('/submission',submitRouter);
 app.use('/chat',chatRouter);
 app.use('/json',jsonRouter);
+
+const { auth } = require('express-openid-connect');
+
+const config = {
+  authRequired: false,
+  auth0Logout: true,
+  secret: AUTH0_SECRET,
+  baseURL: 'https://langenheim-a07134ab155c.herokuapp.com',
+  clientID: 'UqJEsDHOoCyWQNb1UXBpM7kZXjP3L4kb',
+  issuerBaseURL: 'https://dev-lkgc5j11.us.auth0.com'
+};
+
+// auth router attaches /login, /logout, and /callback routes to the baseURL
+app.use(auth(config));
+
+// req.isAuthenticated is provided from the auth router
+app.get('/', (req, res) => {
+  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+});
+
 
 
 var hbs = require('hbs');
