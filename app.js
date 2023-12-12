@@ -148,8 +148,8 @@ const config = {
   issuerBaseURL: 'https://dev-lkgc5j11.us.auth0.com'
 };
 
-// auth router attaches /login, /logout, and /callback routes to the baseURL
-app.use(auth(config));
+// // auth router attaches /login, /logout, and /callback routes to the baseURL
+// app.use(auth(config));
 
 // // req.isAuthenticated is provided from the auth router
 // app.get('/', (req, res) => {
