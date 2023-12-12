@@ -14,35 +14,121 @@
   <!-- Include your bundled JavaScript file -->
   <script src="https://cdn.auth0.com/js/auth0/9.18/auth0.min.js"></script>
 
-<script>
-    // Create Auth0 instance
-    const auth0Config({
-      domain: 'dev-bhkftzl8wc0atcup.us.auth0.com',
-      clientID: 'MvskgbwJ1B5u2qRoyeuFJ9PpiOq6dr46',
-      redirectUri: 'https://langenheim-a07134ab155c.herokuapp.com',
-    });
+<script type="application/javascript">
+      const loginButton = document.getElementById('login');
+      const authButton = document.getElementById('authorize');
+      const pwdStartButton = document.getElementById('pwd-start');
+      const pwdVerifyButton = document.getElementById('pwd-verify');
+      const logoutButton = document.getElementById('logout');
 
-    const authh = new auth0.WebAuth(auth0Config);
+      const options = {
+        domain: 'dev-bhkftzl8wc0atcup.us.auth0.com',
+        clientID: 'MvskgbwJ1B5u2qRoyeuFJ9PpiOq6dr46',
+        redirectUri: 'https://langenheim-a07134ab155c.herokuapp.com',
+        responseType: 'id_token'
+      };
 
-    // Attach event listener to the login button
-    document.getElementById('login-btn').addEventListener('click', () => {
-      // Trigger Auth0 authentication process
-      authh.authorize();
-    });
+      var passwordlessEmail;
 
-    // Handle Auth0 callback
-    authh.parseHash((err, authResult) => {
-      if (authResult && authResult.accessToken && authResult.idToken) {
-        // User is authenticated, you can fetch user details and display them.
-        authh.client.userInfo(authResult.accessToken, (err, user) => {
-          console.log(user);
-          // You can now handle the authenticated user, e.g., redirect to a dashboard page.
+      authButton.addEventListener('click', () => {
+        const webAuth = new auth0.WebAuth(options);
+
+        webAuth.authorize({
+          responseType: 'id_token'
         });
-      } else if (err) {
-        console.error(err);
-      }
-    });
-  </script>
+      });
 
-</body>
+      loginButton.addEventListener('click', () => {
+        const webAuth = new auth0.WebAuth(options);
+
+        webAuth.login(
+          {
+            responseType: 'id_token',
+            username: 'johnfoo@gmail.com',
+            password: '1234',
+            realm: 'acme',
+            onRedirecting: function(done) {
+              console.log('On redirecting..');
+              done();
+            }
+          },
+          function(err) {
+            console.error(err);
+          }
+        );
+      });
+
+      pwdStartButton.addEventListener('click', () => {
+        const webAuth = new auth0.WebAuth({
+          ...options,
+          responseType: 'id_token token'
+        });
+
+        const email = prompt('Enter your email address');
+
+        if (email) {
+          webAuth.passwordlessStart(
+            {
+              connection: 'email',
+              send: 'code',
+              email
+            },
+            (err, result) => {
+              if (err) return console.error(err);
+              console.log(result);
+              passwordlessEmail = email;
+              alert('Done! Check your email');
+            }
+          );
+        }
+      });
+
+      pwdVerifyButton.addEventListener('click', () => {
+        const webAuth = new auth0.WebAuth({
+          ...options,
+          responseType: 'id_token token'
+        });
+
+        const verificationCode = prompt('Enter the code');
+
+        if (!passwordlessEmail) {
+          passwordlessEmail = prompt(
+            'Enter the email address to which the code was sent'
+          );
+        }
+
+        if (verificationCode) {
+          webAuth.passwordlessLogin(
+            {
+              connection: 'email',
+              verificationCode,
+              email: passwordlessEmail,
+              onRedirecting: done => {
+                console.log('Redirecting passwordless...');
+                done();
+              }
+            },
+            (err, res) => {
+              if (err) console.error(err);
+              console.log(res);
+            }
+          );
+        }
+      });
+
+      logoutButton.addEventListener('click', () => {
+        const webAuth = new auth0.WebAuth(options);
+        webAuth.logout({ returnTo: 'https://langenheim-a07134ab155c.herokuapp.com/login2' });
+      });
+
+      window.onload = function() {
+        const webAuth = new auth0.WebAuth(options);
+
+        webAuth.parseHash((err, data) => {
+          console.log(data);
+          window.location.hash = '';
+        });
+      };
+    </script>
+  </body>
 </html>
