@@ -5,6 +5,6 @@ module.exports = {
   entry: './routes/auth2.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'public/javascripts/dist'),
+    path: path.resolve(__dirname, 'public'),
   },
 };
