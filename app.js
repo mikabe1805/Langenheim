@@ -137,16 +137,16 @@ app.use('/submission',submitRouter);
 app.use('/chat',chatRouter);
 app.use('/json',jsonRouter);
 
-const { auth } = require('express-openid-connect');
+// const { auth } = require('express-openid-connect');
 
-const config = {
-  authRequired: false,
-  auth0Logout: true,
-  secret: AUTH0_SECRET,
-  baseURL: 'https://langenheim-a07134ab155c.herokuapp.com',
-  clientID: 'UqJEsDHOoCyWQNb1UXBpM7kZXjP3L4kb',
-  issuerBaseURL: 'https://dev-lkgc5j11.us.auth0.com'
-};
+// const config = {
+//   authRequired: false,
+//   auth0Logout: true,
+//   secret: AUTH0_SECRET,
+//   baseURL: 'https://langenheim-a07134ab155c.herokuapp.com',
+//   clientID: 'UqJEsDHOoCyWQNb1UXBpM7kZXjP3L4kb',
+//   issuerBaseURL: 'https://dev-lkgc5j11.us.auth0.com'
+// };
 
 // // auth router attaches /login, /logout, and /callback routes to the baseURL
 // app.use(auth(config));
