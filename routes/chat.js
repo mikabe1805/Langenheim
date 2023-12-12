@@ -3,7 +3,7 @@ var router = express.Router();
 var data = require('../data/data');
 
 /* GET home page. */
-router.get('/index', async function(req, res, next) {
+router.get('/', async function(req, res, next) {
   let art = await data.getArtwork(req.query.room);
 
   res.render('chat', { title: 'The Langenheim',

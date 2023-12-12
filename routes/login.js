@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var data = require('../data/data');
 /* GET home page. */
-router.get('/index', async function(req, res, next) {
+router.get('/', async function(req, res, next) {
   console.log('here');
   let artwork_data = await data.getAllArtwork();
   let artwork = [];
