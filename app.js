@@ -33,7 +33,7 @@ var cors = require('cors');
 var server = http.createServer(app);
 var io = require('socket.io')(server, {
   cors: {
-    origin: "https://bcavma.herokuapp.com",
+    origin: "https://langenheim-a07134ab155c.herokuapp.com",
     methods: ["GET", "POST"]
   }
 });
