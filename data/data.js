@@ -84,7 +84,7 @@ module.exports.getAllArtwork = async (data) => {
             item ["art_creator"] = row.Artist_Name;
             item ["art_description"] = row.Description;;
             artsourcelink = row.Upload_Artwork;
-            baseUrl = "https://drive.google.com/uc?id"; // hmm?
+            baseUrl = "https://drive.google.com/file/d/"; // risky but whatever
             imageId = artsourcelink.substr(32, 34); //this will extract the image ID from the shared image link
             url = baseUrl.concat(imageId);
             item ["art_source"] = url;
@@ -134,7 +134,7 @@ module.exports.getArtwork = async (id) => {
         // item ["art_source"] = row.Upload_Artwork;
         //test other source of art
         artsourcelink = row.Upload_Artwork;
-        baseUrl = "https://drive.google.com/uc?id";
+        baseUrl = "https://drive.google.com/file/d/";
         imageId = artsourcelink.substr(32, 34); //this will extract the image ID from the shared image link
         url = baseUrl.concat(imageId);
         item ["art_source"] = url;
