@@ -104,7 +104,8 @@ module.exports.getAllArtwork = async (data) => {
     //     }
 
     // };
-    return {artwork: jsonObj, tags: tags};
+    //return {artwork: jsonObj, tags: tags};
+    return {artwork: [], tags: []};
 };
 
 module.exports.getArtwork = async (id) => {
