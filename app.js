@@ -8,7 +8,7 @@ var {google} = require('googleapis');
 // File handling package
 const fs = require('fs');
 const Filter = require('bad-words')
-const RESPONSES_SHEET_ID = '1xsxWPhrZ8XMzsjGMsGgM9ysB9JpQDM1ZEYRUj2tY4kg';
+const RESPONSES_SHEET_ID = '11dCOw0eFFKVXmPo1alL-G006VF7_xHL0VLrYNVsnkGM';
 
 const formatMessage = require('./utils/messages');
 const {
