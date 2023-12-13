@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-// var data = require('../data/data');
+var data = require('../data/data');
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
