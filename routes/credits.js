@@ -21,9 +21,11 @@ router.get('/', async function(req, res, next) {
   //   }
   // }
 
+  // res.render('credits', { title: 'The Langenheim', 
+  //                         layout: 'layout',
+  //                         names: names});
   res.render('credits', { title: 'The Langenheim', 
-                          layout: 'layout',
-                          names: names});
+                          layout: 'layout'});
 });
 
 module.exports = router;
