@@ -3,7 +3,7 @@ var {google} = require('googleapis');
 // File handling package
 const fs = require('fs');
 const { INSPECT_MAX_BYTES } = require('buffer');
-const RESPONSES_SHEET_ID = '14wOYpACaLsyRfFtuXnGO2zJjSAAOF61gPAvDVIIYb-o';
+const RESPONSES_SHEET_ID = '11dCOw0eFFKVXmPo1alL-G006VF7_xHL0VLrYNVsnkGM';
 
 
 const doc = new GoogleSpreadsheet(RESPONSES_SHEET_ID);
@@ -11,7 +11,7 @@ const doc = new GoogleSpreadsheet(RESPONSES_SHEET_ID);
 const CREDENTIALS = JSON.parse(fs.readFileSync('./credentials.json'));
 
 const getServerSide = async() => {
-  const auth = await google.auth.getClient({scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly']});
+  const auth = await google.auth.getClient({scopes: ['https://www.googleapis.com/auth/spreadsheets']});
   const sheets = google.sheets({ version: 'v4', auth });
 }
 
