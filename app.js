@@ -8,7 +8,7 @@ var {google} = require('googleapis');
 // File handling package
 const fs = require('fs');
 const Filter = require('bad-words')
-const RESPONSES_SHEET_ID = '1VEIONwFJ0TQzdLZX41bddhHmM1eNxbRyCiBP2KaYNZA';
+const RESPONSES_SHEET_ID = '11dCOw0eFFKVXmPo1alL-G006VF7_xHL0VLrYNVsnkGM';
 
 const formatMessage = require('./utils/messages');
 const {
@@ -25,6 +25,7 @@ var loginRouter = require('./routes/login');
 var launchRouter = require('./routes/loadUnity');
 var submitRouter = require('./routes/submission');
 var chatRouter = require('./routes/chat');
+var profileRouter = require('./routes/profile');
 var jsonRouter = require('./routes/json');
 var http = require('http');
 var app = express();
@@ -36,7 +37,7 @@ var io = require('socket.io')(server, {
     methods: ["GET", "POST"]
   }
 });
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3110;
 
 server.listen(port, () => {
   console.log('Server listening at port %d', port);
@@ -117,10 +118,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/callback', indexRouter);
 app.use('/artwork', artworkRouter);
 app.use('/about', aboutRouter);
 app.use('/credits', creditsRouter);
-app.use('/login', loginRouter);
+app.use('/login2', loginRouter);
+app.use('/profile', profileRouter);
 app.use('/loadUnity',launchRouter);
 app.use('/submission',submitRouter);
 app.use('/chat',chatRouter);
@@ -150,6 +153,25 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+const { auth } = require('express-openid-connect');
+
+const config = {
+  authRequired: false,
+  auth0Logout: true,
+  secret: '2J_MLL73ZRau4hVOi07x8mc3DOA2KtIizOrVWTrhdGLYD8hLEf9GFR6dmFP5FUNX',
+  baseURL: 'http://localhost:3110',
+  clientID: 'UqJEsDHOoCyWQNb1UXBpM7kZXjP3L4kb',
+  issuerBaseURL: 'https://dev-lkgc5j11.us.auth0.com'
+};
+
+// auth router attaches /login, /logout, and /callback routes to the baseURL
+app.use(auth(config));
+
+// req.isAuthenticated is provided from the auth router
+app.get('/', (req, res) => {
+  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
 });
 
 module.exports = app;
