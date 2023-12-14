@@ -8,9 +8,7 @@ var {google} = require('googleapis');
 // File handling package
 const fs = require('fs');
 const Filter = require('bad-words')
-const RESPONSES_SHEET_ID = '1VEIONwFJ0TQzdLZX41bddhHmM1eNxbRyCiBP2KaYNZA';
-// const { auth } = require('express-openid-connect');
-// require('dotenv').config()
+const RESPONSES_SHEET_ID = '11dCOw0eFFKVXmPo1alL-G006VF7_xHL0VLrYNVsnkGM';
 
 const formatMessage = require('./utils/messages');
 const {
@@ -27,6 +25,7 @@ var loginRouter = require('./routes/login');
 var launchRouter = require('./routes/loadUnity');
 var submitRouter = require('./routes/submission');
 var chatRouter = require('./routes/chat');
+var profileRouter = require('./routes/profile');
 var jsonRouter = require('./routes/json');
 var http = require('http');
 const app = express();
@@ -34,7 +33,7 @@ var cors = require('cors');
 var server = http.createServer(app);
 var io = require('socket.io')(server, {
   cors: {
-    origin: "https://bcavma.herokuapp.com",
+    origin: "https://langenheim-a07134ab155c.herokuapp.com",
     methods: ["GET", "POST"]
   }
 });
@@ -129,14 +128,42 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/callback', indexRouter);
 app.use('/artwork', artworkRouter);
 app.use('/about', aboutRouter);
 app.use('/credits', creditsRouter);
-app.use('/login', loginRouter);
+app.use('/login2', loginRouter);
+app.use('/profile', profileRouter);
 app.use('/loadUnity',launchRouter);
 app.use('/submission',submitRouter);
 app.use('/chat',chatRouter);
 app.use('/json',jsonRouter);
+
+const { auth } = require('express-openid-connect');
+
+const config = {
+  authRequired: false,
+  auth0Logout: true,
+  secret: '2J_MLL73ZRau4hVOi07x8mc3DOA2KtIizOrVWTrhdGLYD8hLEf9GFR6dmFP5FUNX',
+  baseURL: 'https://langenheim-a07134ab155c.herokuapp.com',
+  clientID: 'UqJEsDHOoCyWQNb1UXBpM7kZXjP3L4kb',
+  issuerBaseURL: 'https://dev-lkgc5j11.us.auth0.com'
+};
+
+// auth router attaches /login, /logout, and /callback routes to the baseURL
+app.use(auth(config));
+
+// req.isAuthenticated is provided from the auth router
+app.get('/', (req, res) => {
+  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+});
+
+// const { requiresAuth } = require('express-openid-connect');
+
+// app.get('/profile', requiresAuth(), (req, res) => {
+//   res.send(JSON.stringify(req.oidc.user));
+// });
+// for later
 
 
 var hbs = require('hbs');
