@@ -73,7 +73,7 @@ function outputUsers(users) {
 document.getElementById('leave-btn').addEventListener('click', () => {
   const leaveRoom = confirm('Are you sure you want to leave the artwork chat?');
   if (leaveRoom) {
-    window.location = '/login';
+    window.location = '/login2';
   } else {
   }
 });

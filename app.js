@@ -21,7 +21,7 @@ var indexRouter = require('./routes/index');
 var artworkRouter = require('./routes/artwork');
 var aboutRouter = require('./routes/about');
 var creditsRouter = require('./routes/credits');
-var loginRouter = require('./routes/login');
+var loginRouter = require('./routes/login2');
 var launchRouter = require('./routes/loadUnity');
 var submitRouter = require('./routes/submission');
 var chatRouter = require('./routes/chat');
@@ -33,11 +33,11 @@ var cors = require('cors');
 var server = http.createServer(app);
 var io = require('socket.io')(server, {
   cors: {
-    origin: "https://bcavma.herokuapp.com",
+    origin: "https://langenheim-a07134ab155c.herokuapp.com",
     methods: ["GET", "POST"]
   }
 });
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3100;
 
 server.listen(port, () => {
   console.log('Server listening at port %d', port);
