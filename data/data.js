@@ -11,7 +11,7 @@ const doc = new GoogleSpreadsheet(RESPONSES_SHEET_ID);
 const CREDENTIALS = JSON.parse(fs.readFileSync('./credentials.json'));
 
 const getServerSide = async() => {
-  const auth = await google.auth.getClient({scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly']});
+  const auth = await google.auth.getClient({scopes: ['https://www.googleapis.com/auth/spreadsheets']});
   const sheets = google.sheets({ version: 'v4', auth });
 }
 
