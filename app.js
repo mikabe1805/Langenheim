@@ -161,7 +161,7 @@ const config = {
   authRequired: false,
   auth0Logout: true,
   secret: '2J_MLL73ZRau4hVOi07x8mc3DOA2KtIizOrVWTrhdGLYD8hLEf9GFR6dmFP5FUNX',
-  baseURL: 'http://localhost:3110',
+  baseURL: 'https://langenheim-a07134ab155c.herokuapp.com',
   clientID: 'UqJEsDHOoCyWQNb1UXBpM7kZXjP3L4kb',
   issuerBaseURL: 'https://dev-lkgc5j11.us.auth0.com'
 };
