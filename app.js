@@ -151,10 +151,10 @@ app.get('/', (req, res) => {
 const { requiresAuth } = require('express-openid-connect');
 
 app.get('/profile', requiresAuth(), (req, res) => {
-  // res.send(JSON.stringify(req.oidc.user));
-  res.render('profile', { title: 'The Langenheim', 
-                        layout: 'layout',
-                      profile: JSON.stringify(req.oidc.user)} );
+  res.send(JSON.stringify(req.oidc.user));
+  // res.render('profile', { title: 'The Langenheim', 
+  //                       layout: 'layout',
+  //                     profile: JSON.stringify(req.oidc.user)} );
 });
 
 var hbs = require('hbs');
