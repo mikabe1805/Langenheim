@@ -37,7 +37,7 @@ var io = require('socket.io')(server, {
     methods: ["GET", "POST"]
   }
 });
-const port = process.env.PORT || 3110;
+const port = process.env.PORT || 3111;
 
 server.listen(port, () => {
   console.log('Server listening at port %d', port);
@@ -123,7 +123,7 @@ app.use('/artwork', artworkRouter);
 app.use('/about', aboutRouter);
 app.use('/credits', creditsRouter);
 app.use('/login2', loginRouter);
-app.use('/profile', profileRouter);
+// app.use('/profile', profileRouter);
 app.use('/loadUnity',launchRouter);
 app.use('/submission',submitRouter);
 app.use('/chat',chatRouter);
@@ -148,11 +148,11 @@ app.get('/', (req, res) => {
   res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
 });
 
-// const { requiresAuth } = require('express-openid-connect');
+const { requiresAuth } = require('express-openid-connect');
 
-// app.get('/profile', requiresAuth(), (req, res) => {
-//   res.send(JSON.stringify(req.oidc.user));
-// });
+app.get('/profile', requiresAuth(), (req, res) => {
+  res.send(JSON.stringify(req.oidc.user));
+});
 
 var hbs = require('hbs');
 hbs.registerPartials(__dirname + '/views/partials', function (err) {;});
