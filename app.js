@@ -37,7 +37,7 @@ var io = require('socket.io')(server, {
     methods: ["GET", "POST"]
   }
 });
-const port = process.env.PORT || 3111;
+const port = process.env.PORT || 3101;
 
 server.listen(port, () => {
   console.log('Server listening at port %d', port);
@@ -151,7 +151,8 @@ app.get('/', (req, res) => {
 const { requiresAuth } = require('express-openid-connect');
 
 app.get('/profile', requiresAuth(), (req, res) => {
-  res.send(JSON.stringify(req.oidc.user));
+  // res.send(JSON.stringify(req.oidc.user));
+  app.get(profileRouter);
 });
 
 var hbs = require('hbs');
