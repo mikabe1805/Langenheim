@@ -118,7 +118,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/callback', indexRouter);
+app.use('/callback', profileRouter);
 app.use('/artwork', artworkRouter);
 app.use('/about', aboutRouter);
 app.use('/credits', creditsRouter);
