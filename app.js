@@ -151,8 +151,8 @@ app.get('/', (req, res) => {
 const { requiresAuth } = require('express-openid-connect');
 
 app.get('/profile', requiresAuth(), (req, res) => {
-  // res.send(JSON.stringify(req.oidc.user));
-  app.get(profileRouter);
+  res.send(JSON.stringify(req.oidc.user));
+  // app.get(profileRouter);
 });
 
 var hbs = require('hbs');
