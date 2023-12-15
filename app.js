@@ -37,7 +37,7 @@ var io = require('socket.io')(server, {
     methods: ["GET", "POST"]
   }
 });
-const port = process.env.PORT || 3100;
+const port = process.env.PORT || 3110;
 
 server.listen(port, () => {
   console.log('Server listening at port %d', port);
@@ -129,6 +129,24 @@ app.use('/submission',submitRouter);
 app.use('/chat',chatRouter);
 app.use('/json',jsonRouter);
 
+const { auth } = require('express-openid-connect');
+
+const config = {
+  authRequired: false,
+  auth0Logout: true,
+  secret: '2J_MLL73ZRau4hVOi07x8mc3DOA2KtIizOrVWTrhdGLYD8hLEf9GFR6dmFP5FUNX',
+  baseURL: 'https://langenheim-a07134ab155c.herokuapp.com',
+  clientID: 'UqJEsDHOoCyWQNb1UXBpM7kZXjP3L4kb',
+  issuerBaseURL: 'https://dev-lkgc5j11.us.auth0.com'
+};
+
+// auth router attaches /login, /logout, and /callback routes to the baseURL
+app.use(auth(config));
+
+// req.isAuthenticated is provided from the auth router
+app.get('/', (req, res) => {
+  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+});
 
 var hbs = require('hbs');
 hbs.registerPartials(__dirname + '/views/partials', function (err) {;});
@@ -153,25 +171,6 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
-});
-
-const { auth } = require('express-openid-connect');
-
-const config = {
-  authRequired: false,
-  auth0Logout: true,
-  secret: '2J_MLL73ZRau4hVOi07x8mc3DOA2KtIizOrVWTrhdGLYD8hLEf9GFR6dmFP5FUNX',
-  baseURL: 'https://langenheim-a07134ab155c.herokuapp.com',
-  clientID: 'UqJEsDHOoCyWQNb1UXBpM7kZXjP3L4kb',
-  issuerBaseURL: 'https://dev-lkgc5j11.us.auth0.com'
-};
-
-// auth router attaches /login, /logout, and /callback routes to the baseURL
-app.use(auth(config));
-
-// req.isAuthenticated is provided from the auth router
-app.get('/', (req, res) => {
-  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
 });
 
 module.exports = app;
