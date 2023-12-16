@@ -1,36 +1,19 @@
-<link href="/stylesheets/credits.css" rel="stylesheet">
+<header>
 <div class="container">
       <p1 style=""> Hi there <b> {{profile.given_name}} </b> </p1>
 </div>
+</header>
+<body>
 <div class="container">
       <p1 style="text-align: center;"><b> Your art: </b> </p1>
             <div class="col-14">
                   <p1 class="list d-flex justify-content-center" style="text-align:center;">{{this}}</p1>
             </div>
-            <img src="./public/images/Picture.jpg" class="img-fluid w-100 shadow-1-strong rounded mb-4">
+            <img src="./public/images/Picture.jpg">
 </div>
-
-
-{{!-- 
-<body class="d-flex flex-column min-vh-100">
-<div class="container">
-    <h3 class="text-center mb-2 pb-2 text-primary fw-bold">Profile</h3>
-    <div class="accordion" id="accordionExample">
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingOne">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Welcome to the chill zone (for now)
-        </button>
-        </h2>
-        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-        <div class="accordion-body">
-          <strong>Hi there {{profile.given_name}}</strong> \n here are your artworks:
-          {{!-- when not hardcoded, add in art_source stuff --}}
-          <img src="https://drive.google.com/open?id=1SMIIrMTGAXb4xbJEaq_ZPpUKPNK7bo3_" class="img-fluid w-100 shadow-1-strong rounded mb-4">
-        </div>
-      </div>
-      </div>
-    </div>
-  </div>
+<div>
+  <a href="https://langenheim-a07134ab155c.herokuapp.com/v2/logout?returnTo=http%3A%2F%2Fhttps://langenheim-a07134ab155c.herokuapp.com&client_id=UqJEsDHOoCyWQNb1UXBpM7kZXjP3L4kb">
+  <button>Log out</button>
+  </a>
 </div>
-</body> --}}
+</body>
