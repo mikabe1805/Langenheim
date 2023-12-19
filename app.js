@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const { GoogleSpreadsheet } = require('google-spreadsheet');
 var {google} = require('googleapis');
-var data = require('../data/data');
+var data = require('/data/data');
 // File handling package
 const fs = require('fs');
 const Filter = require('bad-words')
@@ -155,7 +155,7 @@ const { requiresAuth } = require('express-openid-connect');
 app.get('/profile', requiresAuth(), async function(req, res) {
   //res.send(JSON.stringify(req.oidc.user));
   let user = req.oidc.user;
-  let art = await data.getArtwork(user.name);
+  let art = await data.getArtwork("Lauren Kim");
   res.render('profile', { title: 'The Langenheim', 
                         layout: 'layout',
                         // art: art,
