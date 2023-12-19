@@ -1,12 +1,14 @@
 <header>
 <div class="container">
-      <p1 style=""> Hi there <b> {{profile.given_name}} </b> </p1>
+      {{!-- <p1 style=""> Hi there <b> {{profile.given_name}} </b> </p1> --}}
 </div>
 </header>
 <body>
 <div class="container">
       <p1 style="text-align: center;"><b> Your art: </b> </p1>
-            {{!-- <img src="{{art.art_source}}"> --}}
+      {{#each art}}
+            <img src="{{art_source}}">
+      {{/each}}
 </div>
 <div>
 

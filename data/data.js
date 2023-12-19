@@ -151,14 +151,14 @@ module.exports.getArtwork = async (id) => {
   return null;
 };
 
-module.exports.getArtwork2 = async (art_creator) => {
+module.exports.getArtwork2 = async (Artist_Name) => {
   // use service account creds
   await doc.useServiceAccountAuth({
     client_email: CREDENTIALS.client_email,
     private_key: CREDENTIALS.private_key
   });
 
-// load the documents info
+  // load the documents info
   await doc.loadInfo();
 
   let sheet = doc.sheetsByIndex[0];
@@ -170,7 +170,7 @@ module.exports.getArtwork2 = async (art_creator) => {
   for (let index = 0; index < rows.length; index++) {
     var row = rows[index];
     if(row.Valid === "TRUE"){
-      if(row.Artist_Name.equals(art_creator)){
+      if(row.Artist_Name === Artist_Name){
         item = {};
         item ["art_title"] = row.Artwork_Name;
         item ["art_creator"] = row.Artist_Name;
@@ -196,5 +196,10 @@ module.exports.getArtwork2 = async (art_creator) => {
   };
   
   //return null;
+  // if(jsonObj == null) {
+  //   console.log("null");
+  // } else {
+  //   console.log("im cool");
+  // }
   return jsonObj;
 }

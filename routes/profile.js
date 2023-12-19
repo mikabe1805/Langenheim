@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var data = require('../data/data')
 
 // const { requiresAuth } = require('express-openid-connect');
 
@@ -8,8 +9,10 @@ var router = express.Router();
 // });
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', async function(req, res, next) {
+  let art = await data.getArtwork2('Mika Be');
   res.render('profile', { title: 'The Langenheim', 
+                        art: art,
                         layout: 'layout'});
 });
 
