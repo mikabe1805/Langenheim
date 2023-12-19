@@ -150,11 +150,17 @@ app.get('/', (req, res) => {
 
 const { requiresAuth } = require('express-openid-connect');
 
-app.get('/profile', requiresAuth(), (req, res) => {
-  // res.send(JSON.stringify(req.oidc.user));
-  res.render('profile', { title: 'The Langenheim', 
-                        layout: 'layout',
-                      profile: req.oidc.user} );
+// experiment: turned into an async function
+app.get('/profile', requiresAuth(), async function(req, res) {
+  res.send(JSON.stringify(req.oidc.user));
+  // let name = req.oidc.user.given
+  // let art = await data.getArtwork();
+
+  //   if(art) {res.render('artwork_detail', { title: art.art_title, styles: ["tables", "event"], art: art, tags: art['art_tags'] });}
+  //   else{next();}
+  // res.render('profile', { title: 'The Langenheim', 
+  //                       layout: 'layout',
+  //                     profile: req.oidc.user} );
 });
 
 var hbs = require('hbs');
