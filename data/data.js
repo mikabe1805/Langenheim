@@ -196,5 +196,5 @@ module.exports.getArtwork = async (art_creator) => {
   };
   
   //return null;
-  return {artwork: jsonObj, tags: tags};
+  return jsonObj;
 }
