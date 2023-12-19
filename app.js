@@ -155,7 +155,7 @@ const { requiresAuth } = require('express-openid-connect');
 app.get('/profile', requiresAuth(), async function(req, res) {
   //res.send(JSON.stringify(req.oidc.user));
   let user = req.oidc.user;
-  let art = await data.getArtwork("Lauren Kim");
+  //let art = await data.getArtwork("Lauren Kim");
   res.render('profile', { title: 'The Langenheim', 
                         layout: 'layout',
                         // art: art,
