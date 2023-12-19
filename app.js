@@ -152,15 +152,13 @@ const { requiresAuth } = require('express-openid-connect');
 
 // experiment: turned into an async function
 app.get('/profile', requiresAuth(), async function(req, res) {
-  res.send(JSON.stringify(req.oidc.user));
-  // let name = req.oidc.user.given
-  // let art = await data.getArtwork();
-
-  //   if(art) {res.render('artwork_detail', { title: art.art_title, styles: ["tables", "event"], art: art, tags: art['art_tags'] });}
-  //   else{next();}
-  // res.render('profile', { title: 'The Langenheim', 
-  //                       layout: 'layout',
-  //                     profile: req.oidc.user} );
+  //res.send(JSON.stringify(req.oidc.user));
+  let user = req.oidc.user;
+  let art = await data.getArtwork(user.name);
+  res.render('profile', { title: 'The Langenheim', 
+                        layout: 'layout',
+                        art: art,
+                        profile: user });
 });
 
 var hbs = require('hbs');
