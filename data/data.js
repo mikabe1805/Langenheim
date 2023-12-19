@@ -151,7 +151,7 @@ module.exports.getArtwork = async (id) => {
   return null;
 };
 
-module.exports.getArtwork = async (art_creator) => {
+module.exports.getArtwork2 = async (art_creator) => {
   // use service account creds
   await doc.useServiceAccountAuth({
     client_email: CREDENTIALS.client_email,
