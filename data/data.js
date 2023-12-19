@@ -170,7 +170,7 @@ module.exports.getArtwork2 = async (art_creator) => {
   for (let index = 0; index < rows.length; index++) {
     var row = rows[index];
     if(row.Valid === "TRUE"){
-      if(row.art_creator === art_creator){
+      if(row.art_creator.equals(art_creator)){
         item = {};
         item ["art_title"] = row.Artwork_Name;
         item ["art_creator"] = row.Artist_Name;
