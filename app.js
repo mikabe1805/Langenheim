@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const { GoogleSpreadsheet } = require('google-spreadsheet');
 var {google} = require('googleapis');
-var data = require('/data/data');
+//var data = require('../data/data');
 // File handling package
 const fs = require('fs');
 const Filter = require('bad-words')
