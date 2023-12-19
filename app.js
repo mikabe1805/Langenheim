@@ -159,7 +159,7 @@ app.get('/profile', requiresAuth(), async function(req, res) {
   let art = await data.getArtwork2("expp");
   res.render('profile', { title: 'The Langenheim', 
                         layout: 'layout',
-                        art: art,
+                        // art: art,
                         profile: user });
 });
 
