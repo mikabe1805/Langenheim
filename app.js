@@ -125,7 +125,7 @@ app.use('/artwork', artworkRouter);
 app.use('/about', aboutRouter);
 app.use('/credits', creditsRouter);
 app.use('/login2', loginRouter);
-app.use('/profile', profileRouter);
+// app.use('/profile', profileRouter);
 app.use('/loadUnity',launchRouter);
 app.use('/submission',submitRouter);
 app.use('/chat',chatRouter);
@@ -153,15 +153,15 @@ app.get('/', (req, res) => {
 const { requiresAuth } = require('express-openid-connect');
 
 // THIS IS THE FINAL THING! got rid for now for experiments
-// app.get('/profile', requiresAuth(), async function(req, res) {
-//   //res.send(JSON.stringify(req.oidc.user));
-//   let user = req.oidc.user;
-//   let art = await data.getArtwork2("expp");
-//   res.render('profile', { title: 'The Langenheim', 
-//                         layout: 'layout',
-//                         // art: art,
-//                         profile: user });
-// });
+app.get('/profile', requiresAuth(), async function(req, res) {
+  //res.send(JSON.stringify(req.oidc.user));
+  let user = req.oidc.user;
+  let art = await data.getArtwork2(user.name);
+  res.render('profile', { title: 'The Langenheim', 
+                        layout: 'layout',
+                        art: art,
+                        profile: user });
+});
 
 var hbs = require('hbs');
 hbs.registerPartials(__dirname + '/views/partials', function (err) {;});
