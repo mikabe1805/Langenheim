@@ -88,8 +88,9 @@ module.exports.getAllArtwork = async (data) => {
             //baseUrl = "https://drive.google.com/uc?id";
             baseUrl="https://lh3.google.com/u/0/d/";
             imageId = artsourcelink.substr(32, 34); //this will extract the image ID from the shared image link
-            // url = baseUrl.concat(imageId);
-            url = baseUrl + imageId;
+            imageId = substr(1);
+            url = baseUrl.concat(imageId); // problem: adds =
+            // url = baseUrl + imageId;
             item ["art_source"] = url;
             item ["art_id"] = row.ID;
             item ["art_type"] = row.Media_Format;
@@ -140,8 +141,9 @@ module.exports.getArtwork = async (id) => {
         //baseUrl = "https://drive.google.com/uc?id";
         baseUrl="https://lh3.google.com/u/0/d/";
         imageId = artsourcelink.substr(32, 34); //this will extract the image ID from the shared image link
-        // url = baseUrl.concat(imageId);
-        url = baseUrl + imageId;
+        imageId = substr(1);
+        url = baseUrl.concat(imageId); // problem: adds =
+        // url = baseUrl + imageId;
         item ["art_source"] = url;
         item ["art_id"] = row.ID;
         item ["art_type"] = row.Media_Format;
@@ -186,7 +188,9 @@ module.exports.getArtwork2 = async (Artist_Name) => {
         // baseUrl = "https://drive.google.com/uc?id";
         baseUrl="https://lh3.google.com/u/0/d/";
         imageId = artsourcelink.substr(32, 34); //this will extract the image ID from the shared image link
-        //url = baseUrl.concat(imageId);
+        imageId = substr(1);
+        url = baseUrl.concat(imageId); // problem: adds =
+        // url = baseUrl + imageId;
         url = baseUrl + imageId;
         item ["art_source"] = url;
         item ["art_id"] = row.ID;
