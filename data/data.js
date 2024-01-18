@@ -83,7 +83,8 @@ module.exports.getAllArtwork = async (data) => {
             item = {};
             item ["art_title"] = row.Artwork_Name;
             item ["art_creator"] = row.Artist_Name;
-            item ["art_description"] = row.Description;;
+            item ["art_description"] = row.Description;
+            item ["grad_year"] = row.Class;
             artsourcelink = row.Upload_Artwork;
             //baseUrl = "https://drive.google.com/uc?id";
             baseUrl="https://lh3.google.com/u/0/d/";
@@ -134,7 +135,8 @@ module.exports.getArtwork = async (id) => {
         item = {};
         item ["art_title"] = row.Artwork_Name;
         item ["art_creator"] = row.Artist_Name;
-        item ["art_description"] = row.Description;;
+        item ["art_description"] = row.Description;
+        item ["grad_year"] = row.Class;
         // item ["art_source"] = row.Upload_Artwork;
         //test other source of art
         artsourcelink = row.Upload_Artwork;
@@ -181,7 +183,8 @@ module.exports.getArtwork2 = async (Artist_Name) => {
         item = {};
         item ["art_title"] = row.Artwork_Name;
         item ["art_creator"] = row.Artist_Name;
-        item ["art_description"] = row.Description;;
+        item ["art_description"] = row.Description;
+        item ["grad_year"] = row.Class;
         // item ["art_source"] = row.Upload_Artwork;
         //test other source of art
         artsourcelink = row.Upload_Artwork;
