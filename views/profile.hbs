@@ -15,6 +15,9 @@
 <header>
 <div class="container">
       <p1 style=""> Hi there <b> {{profile.given_name}} </b> </p1>
+      {{!-- try getting year from existing artwork --}}
+      {{!-- if artwork, use grad year from there, if not, delete all of grad year --}}
+      <p1 style=""> Class of {{grad_year}} </p1>
 </div>
 </header>
 <body>
@@ -29,7 +32,7 @@
                         <div class="details">
                           <h1 style=" font-weight: bold;">{{art_title}}</h1>
                           <h4> by <h4>
-                          <h2> {{art_creator}}</h2>
+                          <h2> {{art_creator}} </h2>
 
                         </div>
                       </div>
