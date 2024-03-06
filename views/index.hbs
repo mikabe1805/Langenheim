@@ -1,5 +1,10 @@
 <link href="/stylesheets/index.css" rel="stylesheet">
-<p style="background-image: url({{art.art_source}});">
+{{#with art}}
+<p style="
+.parallax {
+background-image: url({{art_source}});
+}
+">
 
 <div class="container-fluid">
   <div id=inside class="parallax">
@@ -14,3 +19,4 @@
   </p3>
 </div>
 
+{{/with}}
