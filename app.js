@@ -11,6 +11,7 @@ const fs = require('fs');
 const Filter = require('bad-words')
 const RESPONSES_SHEET_ID = '1xwhYVhmQjnEZsFlsUqqb4ejq_DZcFXsNzW1F8RLNgfk'; //Artwork 2
 //const RESPONSES_SHEET_ID = '11dCOw0eFFKVXmPo1alL-G006VF7_xHL0VLrYNVsnkGM'; //Artwork 1
+const cors = require("cors");
 
 const formatMessage = require('./utils/messages');
 const {
@@ -131,6 +132,11 @@ app.use('/loadUnity',launchRouter);
 app.use('/submission',submitRouter);
 app.use('/chat',chatRouter);
 app.use('/json',jsonRouter);
+app.use(
+  cors({
+   origin: "https://mysterious-citadel-11464-8a0e45efb7c9.herokuapp.com/",
+  })
+ );
 
 const { auth } = require('express-openid-connect');
 

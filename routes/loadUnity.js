@@ -17,11 +17,11 @@ router.get('/', function(req, res, next) {
 
 module.exports = router;
 
-var x = new XMLHttpRequest();
-x.open('GET', 'https://mysterious-citadel-11464-8a0e45efb7c9.herokuapp.com/https://langenheim-a07134ab155c.herokuapp.com/loadUnity');
-// I put "XMLHttpRequest" here, but you can use anything you want.
-x.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-x.onload = function() {
-    alert(x.responseText);
-};
-x.send();
+// var x = new XMLHttpRequest();
+// x.open('GET', 'https://mysterious-citadel-11464-8a0e45efb7c9.herokuapp.com/https://langenheim-a07134ab155c.herokuapp.com/loadUnity');
+// // I put "XMLHttpRequest" here, but you can use anything you want.
+// x.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+// x.onload = function() {
+//     alert(x.responseText);
+// };
+// x.send();
