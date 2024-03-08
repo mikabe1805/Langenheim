@@ -10,6 +10,7 @@ const RESPONSES_SHEET_ID = '1xwhYVhmQjnEZsFlsUqqb4ejq_DZcFXsNzW1F8RLNgfk'; //Art
 const doc = new GoogleSpreadsheet(RESPONSES_SHEET_ID);
 // Credentials for the service account
 const CREDENTIALS = JSON.parse(fs.readFileSync('./credentials.json'));
+var maxID;
 
 const getServerSide = async() => {
   const auth = await google.auth.getClient({scopes: ['https://www.googleapis.com/auth/spreadsheets']});
@@ -77,6 +78,7 @@ module.exports.getAllArtwork = async (data) => {
 
     let rows = await sheet.getRows();
     let jsonObj = [];
+    maxID = rows.length;
     for (let index = 0; index < rows.length; index++) {
         var row = rows[index];
         if(row.Valid === "TRUE"){
