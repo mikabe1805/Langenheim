@@ -33,7 +33,7 @@ var jsonRouter = require('./routes/json');
 var data = require('./data/data');
 var http = require('http');
 var app = express();
-var cors = require('cors');
+// var cors = require('cors');
 var server = http.createServer(app);
 var io = require('socket.io')(server, {
   cors: {
@@ -132,11 +132,11 @@ app.use('/loadUnity',launchRouter);
 app.use('/submission',submitRouter);
 app.use('/chat',chatRouter);
 app.use('/json',jsonRouter);
-app.use(
-  cors({
-   origin: "https://mysterious-citadel-11464-8a0e45efb7c9.herokuapp.com/",
-  })
- );
+// app.use(
+//   cors({
+//    origin: "https://mysterious-citadel-11464-8a0e45efb7c9.herokuapp.com/",
+//   })
+//  );
 
 const { auth } = require('express-openid-connect');
 
