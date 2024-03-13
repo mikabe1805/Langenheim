@@ -18,7 +18,7 @@ const getServerSide = async() => {
 }
 
 /* GET home page. */
-router.get('https://mysterious-citadel-11464-8a0e45efb7c9.herokuapp.com/', async function(req, res, next) {
+router.get('/', async function(req, res, next) {
   await doc.useServiceAccountAuth({
     client_email: CREDENTIALS.client_email,
     private_key: CREDENTIALS.private_key

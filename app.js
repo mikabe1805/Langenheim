@@ -37,7 +37,7 @@ var app = express();
 var server = http.createServer(app);
 var io = require('socket.io')(server, {
   cors: {
-    origin: "https://langenheim-a07134ab155c.herokuapp.com",
+    origin: "https://mysterious-citadel-11464-8a0e45efb7c9.herokuapp.com/https://langenheim-a07134ab155c.herokuapp.com",
     methods: ["GET", "POST"]
   }
 });
