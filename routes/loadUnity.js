@@ -10,7 +10,7 @@ var router = express.Router();
 // // app.use(cors(corsOptions)) // Use this after the variable declaration
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('https://mysterious-citadel-11464-8a0e45efb7c9.herokuapp.com/', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "*");
   res.render('loadUnity', { title: 'The Langenheim', 
