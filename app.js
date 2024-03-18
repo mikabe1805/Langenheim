@@ -34,7 +34,7 @@ var data = require('./data/data');
 var http = require('http');
 var app = express();
 // var cors = require('cors');
-// app.use(cors());
+app.use(cors());
 var server = http.createServer(app);
 var io = require('socket.io')(server, {
   cors: {
