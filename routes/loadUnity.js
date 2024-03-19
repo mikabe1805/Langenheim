@@ -24,7 +24,7 @@ router.get('/', async function(req, res, next) {
     client_email: CREDENTIALS.client_email,
     private_key: CREDENTIALS.private_key
   });
-  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Origin", "https://langenheim-a07134ab155c.herokuapp.com");
   res.header("Access-Control-Allow-Headers", "*");
   res.render('loadUnity', { title: 'The Langenheim', 
                         layout: 'layout'});
