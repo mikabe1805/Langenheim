@@ -34,7 +34,21 @@ var data = require('./data/data');
 var http = require('http');
 var app = express();
 // var cors = require('cors');
-app.use(cors());
+var originsWhitelist = [
+  'http://localhost:3101',
+  'https://langenheim-a07134ab155c.herokuapp.com'
+];
+var corsOptions = {
+  origin: function(origin, callback){
+        console.log(origin);
+        var isWhitelisted = originsWhitelist.indexOf(origin) !== -1;
+        console.log(isWhitelisted);
+        callback(null, isWhitelisted);
+  },
+  credentials:true
+}
+app.use(cors(corsOptions))
+// app.use(cors());
 var server = http.createServer(app);
 var io = require('socket.io')(server, {
   cors: {

@@ -5,6 +5,7 @@ var router = express.Router();
 const { GoogleSpreadsheet } = require('google-spreadsheet');
 var {google} = require('googleapis');
 // File handling package
+// maybe add cors code here?
 const fs = require('fs');
 const { INSPECT_MAX_BYTES } = require('buffer');
 const RESPONSES_SHEET_ID = '1xwhYVhmQjnEZsFlsUqqb4ejq_DZcFXsNzW1F8RLNgfk'; //Artwork 2
