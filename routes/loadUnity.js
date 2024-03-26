@@ -26,7 +26,7 @@ router.get('/', async function(req, res, next) {
     private_key: CREDENTIALS.private_key
   });
   res.header("Access-Control-Allow-Origin", "https://langenheim-a07134ab155c.herokuapp.com");
-  res.header("Access-Control-Allow-Headers",  "Origin, X-Requested-With, Content-Type, Accept,append,delete,entries,foreach,get,has,keys,set,values,Authorization");
+  res.header("Access-Control-Allow-Headers",  "Origin, X-Requested-With, Content-Type, Accept");
   res.render('loadUnity', { title: 'The Langenheim', 
                         layout: 'layout'});
 });
