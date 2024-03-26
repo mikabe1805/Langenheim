@@ -9,15 +9,15 @@ var {google} = require('googleapis');
 // maybe add cors code here?
 const fs = require('fs');
 const { INSPECT_MAX_BYTES } = require('buffer');
-const RESPONSES_SHEET_ID = '1xwhYVhmQjnEZsFlsUqqb4ejq_DZcFXsNzW1F8RLNgfk'; //Artwork 2
+// const RESPONSES_SHEET_ID = '1xwhYVhmQjnEZsFlsUqqb4ejq_DZcFXsNzW1F8RLNgfk'; //Artwork 2
 
 
-const doc = new GoogleSpreadsheet(RESPONSES_SHEET_ID);
-const CREDENTIALS = JSON.parse(fs.readFileSync('./credentials.json'));
-const getServerSide = async() => {
-  const auth = await google.auth.getClient({scopes: ['https://www.googleapis.com/auth/spreadsheets']});
-  const sheets = google.sheets({ version: 'v4', auth });
-}
+// const doc = new GoogleSpreadsheet(RESPONSES_SHEET_ID);
+// const CREDENTIALS = JSON.parse(fs.readFileSync('./credentials.json'));
+// const getServerSide = async() => {
+//   const auth = await google.auth.getClient({scopes: ['https://www.googleapis.com/auth/spreadsheets']});
+//   const sheets = google.sheets({ version: 'v4', auth });
+// }
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
@@ -26,7 +26,7 @@ router.get('/', async function(req, res, next) {
     private_key: CREDENTIALS.private_key
   });
   res.header("Access-Control-Allow-Origin", "https://langenheim-a07134ab155c.herokuapp.com");
-  res.header("Access-Control-Allow-Headers",  "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Headers",  "Origin, X-Requested-With, Content-Type, Accept,append,delete,entries,foreach,get,has,keys,set,values,Authorization");
   res.render('loadUnity', { title: 'The Langenheim', 
                         layout: 'layout'});
 });
