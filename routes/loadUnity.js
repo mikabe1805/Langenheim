@@ -21,12 +21,12 @@ const { INSPECT_MAX_BYTES } = require('buffer');
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
-  await doc.useServiceAccountAuth({
-    client_email: CREDENTIALS.client_email,
-    private_key: CREDENTIALS.private_key
-  });
-  res.header("Access-Control-Allow-Origin", "https://langenheim-a07134ab155c.herokuapp.com");
-  res.header("Access-Control-Allow-Headers",  "Origin, X-Requested-With, Content-Type, Accept");
+  // await doc.useServiceAccountAuth({
+  //   client_email: CREDENTIALS.client_email,
+  //   private_key: CREDENTIALS.private_key
+  // });
+  // res.header("Access-Control-Allow-Origin", "https://langenheim-a07134ab155c.herokuapp.com");
+  // res.header("Access-Control-Allow-Headers",  "Origin, X-Requested-With, Content-Type, Accept");
   res.render('loadUnity', { title: 'The Langenheim', 
                         layout: 'layout'});
 });
