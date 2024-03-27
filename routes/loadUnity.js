@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var express = require('express');
-var cors = require('cors');
+// var cors = require('cors');
 var router = express.Router();
-const { GoogleSpreadsheet } = require('google-spreadsheet');
-var {google} = require('googleapis');
+// const { GoogleSpreadsheet } = require('google-spreadsheet');
+// var {google} = require('googleapis');
 // File handling package
 // maybe add cors code here?
 const fs = require('fs');
