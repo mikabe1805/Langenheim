@@ -1,7 +1,7 @@
 com.elringus.unitygoogledrive@0.28.0
 com.github-glitchenzo.nugetforunity@4.0.2
 com.unity.cinemachine@2.9.5
-com.unity.collab-proxy@2.2.0
+com.unity.collab-proxy@2.3.1
 com.unity.connect.share@4.2.3
 com.unity.feature.development@1.0.2
 com.unity.inputsystem@1.7.0
