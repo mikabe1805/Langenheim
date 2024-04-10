@@ -25,7 +25,7 @@ router.get('/', async function(req, res, next) {
   //   client_email: CREDENTIALS.client_email,
   //   private_key: CREDENTIALS.private_key
   // });
-  res.header("Content-Encoding", "gzip");
+  // res.header("Content-Encoding", "gzip");
   // res.header("Access-Control-Allow-Headers",  "Origin, X-Requested-With, Content-Type, Accept");
   res.render('loadUnity', { title: 'The Langenheim', 
                         layout: 'layout'});
