@@ -9,7 +9,7 @@ router.get('/', async function(req, res, next) {
 //   content.then();
   res.render('appScript', { title: 'The Langenheim',
                             content: content,
-                        layout: 'layout'});
+                        layout: 'layout2'});
 });
 
 module.exports = router;
