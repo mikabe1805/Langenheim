@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var data = require('../data/data')
+var data = require('../data/data');
 
 // const { requiresAuth } = require('express-openid-connect');
 

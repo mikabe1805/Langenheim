@@ -21,6 +21,7 @@ const {
   getRoomUsers
 } = require('./utils/users');
 var indexRouter = require('./routes/index');
+var appScriptRouter = require('./routes/appScript');
 var artworkRouter = require('./routes/artwork');
 var aboutRouter = require('./routes/about');
 var creditsRouter = require('./routes/credits');
@@ -137,6 +138,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/appScript', appScriptRouter);
 app.use('/callback', profileRouter);
 app.use('/artwork', artworkRouter);
 app.use('/about', aboutRouter);

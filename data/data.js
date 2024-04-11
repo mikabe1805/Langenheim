@@ -162,6 +162,35 @@ module.exports.getArtwork = async (id) => {
   return null;
 };
 
+module.exports.getJSON = async () => {
+    return await fetch('https://script.googleusercontent.com/macros/echo?user_content_key=reddDbXf2BAtcm6Z2s7oKn3CC5dXn47PaodiMr8dIP3oD8hj9lz9UvMQOqnFFkbPctvPcpitBQt-YRnm2eBFgflOwmt8Syc0m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnAUx8_M4mumCL5sQiZ0wwgrQ6fycNegbWeN0xWgdkOkJBWqmsTiLGZg_8a8XnHsREoiIvu6nb_-mz5yylK5aGsYk9Tl0-xeNeA&lib=MapPpBtNttTVeU4fydvpN6JhG3lFpo0w5')
+    .then(function (response) {
+        switch (response.status) {
+            // status "OK"
+            case 200:
+                return response.text();
+                console.log("#1" + content);
+                // return content;
+            case 404:
+                throw response;
+        }
+    })
+    .then(function (template) {
+        console.log("hi?" + template);
+        return template;
+    }) // dont need maybe
+    .catch(function (response) {
+        // "Not Found"
+        console.log("heyyyy thereeee" + response.statusText);
+    });
+  //   content.then(function(result) {
+  //     // console.log(result) // "Some User token"
+  //     // return result;
+  //  });
+  //  console.log("hello? " + content);
+  //  return returnValue;
+}
+
 module.exports.getArtwork2 = async (Artist_Name) => {
   // use service account creds
   await doc.useServiceAccountAuth({
