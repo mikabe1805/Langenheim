@@ -27,6 +27,7 @@ router.get('/', async function(req, res, next) {
   // });
   // res.header("Content-Encoding", "gzip");
   // res.header("Access-Control-Allow-Headers",  "Origin, X-Requested-With, Content-Type, Accept");
+  res.writeHead(200, {'Access-Control-Allow-Origin': '*'});
   res.render('loadUnity', { title: 'The Langenheim', 
                         layout: 'layout'});
 });
