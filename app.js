@@ -22,6 +22,7 @@ const {
 } = require('./utils/users');
 var indexRouter = require('./routes/index');
 var appScriptRouter = require('./routes/appScript');
+var imageScriptRouter = require('./routes/imageScript');
 var artworkRouter = require('./routes/artwork');
 var aboutRouter = require('./routes/about');
 var creditsRouter = require('./routes/credits');
@@ -139,6 +140,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/appScript', appScriptRouter);
+app.use('/imageScript', imageScriptRouter);
 app.use('/callback', profileRouter);
 app.use('/artwork', artworkRouter);
 app.use('/about', aboutRouter);
