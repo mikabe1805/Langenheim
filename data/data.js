@@ -247,3 +247,57 @@ module.exports.getArtwork2 = async (Artist_Name) => {
   // }
   return jsonObj;
 }
+
+// This system exports all artworks regardless of whether or not they are valid (to ensure a non messed up id system)
+module.exports.getArtwork3 = async () => {
+  // use service account creds
+  await doc.useServiceAccountAuth({
+    client_email: CREDENTIALS.client_email,
+    private_key: CREDENTIALS.private_key
+  });
+
+  // load the documents info
+  await doc.loadInfo();
+
+  let sheet = doc.sheetsByIndex[0];
+  let tags = [];
+  let SKIP_TAGS = ["Freshman", "Sophomore", "Junior", "Senior"]
+
+  let rows = await sheet.getRows();
+  let jsonObj = [];
+  for (let index = 0; index < rows.length; index++) {
+    var row = rows[index];
+        item = {};
+        item ["art_title"] = row.Artwork_Name;
+        item ["art_creator"] = row.Artist_Name;
+        item ["art_description"] = row.Description;
+        item ["grad_year"] = row.Class;
+        // item ["art_source"] = row.Upload_Artwork;
+        //test other source of art
+        artsourcelink = row.Upload_Artwork;
+        // baseUrl = "https://drive.google.com/uc?id";
+        baseUrl="https://lh3.google.com/u/0/d/";
+        imageId = artsourcelink.substr(32, 34); //this will extract the image ID from the shared image link
+        imageId = imageId.substr(1);
+        // url = baseUrl.concat(imageId); // problem: adds =
+        url = baseUrl + imageId;
+        item ["art_source"] = url;
+        item ["art_id"] = row.ID;
+        item ["art_type"] = row.Media_Format;
+        item ["art_tags"] = formatTags(row.Tags);
+        item ["row_number"] = row._rowNumber;
+
+        //return item;
+        if(!(containsID(jsonObj, row.ID))) {
+          jsonObj.push(item);
+      }
+  };
+  
+  //return null;
+  // if(jsonObj == null) {
+  //   console.log("null");
+  // } else {
+  //   console.log("im cool");
+  // }
+  return jsonObj;
+}
