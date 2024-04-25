@@ -163,7 +163,7 @@ module.exports.getArtwork = async (id) => {
 };
 
 module.exports.getJSON = async () => {
-    return await fetch('https://script.googleusercontent.com/macros/echo?user_content_key=reddDbXf2BAtcm6Z2s7oKn3CC5dXn47PaodiMr8dIP3oD8hj9lz9UvMQOqnFFkbPctvPcpitBQt-YRnm2eBFgflOwmt8Syc0m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnAUx8_M4mumCL5sQiZ0wwgrQ6fycNegbWeN0xWgdkOkJBWqmsTiLGZg_8a8XnHsREoiIvu6nb_-mz5yylK5aGsYk9Tl0-xeNeA&lib=MapPpBtNttTVeU4fydvpN6JhG3lFpo0w5')
+    return await fetch('https://script.googleusercontent.com/macros/echo?user_content_key=w11MNlj039hOiNoju8ORTjHxyCFzJlboi4D8KLQAR8o3CAXW9S6fgpF6TM-S88Zg1ItRhA3bdNfYCFND0eqLyLbOLFZdoJ7Ym5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnPTei8p0S0EhypxGcFo6iODTDeKwaZQB7dVpvTUKUH_LPdbjxONCyjlioh8ih6K2_y8bEn_-dFqx6e3tWbRqOb_CqVqo4vkcEg&lib=MQi0ec-YB-AS8Vja2Evfca9tc4wslr1_5')
     .then(function (response) {
         switch (response.status) {
             // status "OK"
