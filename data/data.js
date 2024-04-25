@@ -114,6 +114,20 @@ module.exports.getAllArtwork = async (data) => {
     return {artwork: jsonObj, tags: tags};
 };
 
+const imageUrlToBase64 = async (url) => {
+  const data = await fetch(url);
+  const blob = await data.blob();
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(blob);
+    reader.onloadend = () => {
+      const base64data = reader.result;
+      resolve(base64data);
+    };
+    reader.onerror = reject;
+  });
+};
+
 module.exports.getArtwork = async (id) => {
   // use service account creds
   await doc.useServiceAccountAuth({
@@ -281,6 +295,7 @@ module.exports.getArtwork3 = async () => {
         imageId = imageId.substr(1);
         // url = baseUrl.concat(imageId); // problem: adds =
         url = baseUrl + imageId;
+        // url = imageUrlToBase64(url);
         item ["art_source"] = url;
         item ["art_id"] = row.ID;
         item ["art_type"] = row.Media_Format;
