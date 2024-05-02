@@ -35,3 +35,5 @@ header("Access-Control-Allow-Origin: *");
 // in which case you should also append "Origin: http://your-webgl-domain" header to the request
  
 echo $response_body;
+
+?>
