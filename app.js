@@ -8,7 +8,8 @@ var {google} = require('googleapis');
 //var data = require('../data/data'); <- this is the code breaker
 // File handling package
 const fs = require('fs');
-const Filter = require('bad-words')
+const Filter = require('bad-words');
+var execPHP = require('./execphp.js')();
 const RESPONSES_SHEET_ID = '1xwhYVhmQjnEZsFlsUqqb4ejq_DZcFXsNzW1F8RLNgfk'; //Artwork 2
 //const RESPONSES_SHEET_ID = '11dCOw0eFFKVXmPo1alL-G006VF7_xHL0VLrYNVsnkGM'; //Artwork 1
 // const cors = require("cors");
@@ -193,6 +194,13 @@ var hbs = require('hbs');
 hbs.registerPartials(__dirname + '/views/partials', function (err) {;});
 hbs.registerHelper('toLowerCase', function(str) {
   return str.toLowerCase();
+});
+
+app.use('*.php',function(request,response,next) {
+	execPHP.parseFile(request.originalUrl,function(phpResult) {
+		response.write(phpResult);
+		response.end();
+	});
 });
 
 // catch 404 and forward to error handler
