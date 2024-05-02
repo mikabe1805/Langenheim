@@ -62,6 +62,38 @@ function containsTag(tag, tag_list){
   return returnVale;
 }
 
+// SuperSecretFunction = async() => {
+//   await doc.useServiceAccountAuth({
+//     client_email: CREDENTIALS.client_email,
+//     private_key: CREDENTIALS.private_key
+//   });
+//   await doc.loadInfo();
+//   let sheet = doc.sheetsByIndex[0];
+//     let tags = [];
+//     let SKIP_TAGS = ["Freshman", "Sophomore", "Junior", "Senior"]
+
+//     let rows = await sheet.getRows();
+//     let jsonObj = [];
+//     maxID = rows.length;
+//     for (let index = 0; index < rows.length; index++) {
+//         var row = rows[index];
+//         if(row.Valid === "TRUE"){
+//             artsourcelink = row.Upload_Artwork;
+//             imageId = artsourcelink.substr(32, 34); //this will extract the image ID from the shared image link
+//             imageId = imageId.substr(1);
+//             var file = DriveApp.getFileById(imageId);
+//             Logger.log(file);
+//             var docName = file.getName();
+//             var docSize = file.getSize();
+//             var docType = file.getMimeType();
+
+//             var docImg = Utilities.base64Encode(file.getBlob().getBytes());
+//             Logger.log(docImg);
+//         }
+//       }
+
+// }
+
 module.exports.getAllArtwork = async (data) => {
     // use service account creds
     await doc.useServiceAccountAuth({
@@ -177,7 +209,7 @@ module.exports.getArtwork = async (id) => {
 };
 
 module.exports.getJSON = async () => {
-    return await fetch('https://script.googleusercontent.com/macros/echo?user_content_key=reddDbXf2BAtcm6Z2s7oKn3CC5dXn47PaodiMr8dIP3oD8hj9lz9UvMQOqnFFkbPctvPcpitBQt-YRnm2eBFgflOwmt8Syc0m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnAUx8_M4mumCL5sQiZ0wwgrQ6fycNegbWeN0xWgdkOkJBWqmsTiLGZg_8a8XnHsREoiIvu6nb_-mz5yylK5aGsYk9Tl0-xeNeA&lib=MapPpBtNttTVeU4fydvpN6JhG3lFpo0w5')
+    return await fetch('https://script.googleusercontent.com/macros/echo?user_content_key=q2F9PQBomDeWf3ZIGpd5Ld-zc2uM99uVPlfHFyXC-IL1wZ7bvPuRxpSax83748WAiKmcxKbBCnwWSkYyWDa8lrNkZJ7hy7wgm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnAUx8_M4mumCL5sQiZ0wwgrQ6fycNegbWeN0xWgdkOkJBWqmsTiLGZg_8a8XnHsREoiIvu6nb_-mz5yylK5aGsYk9Tl0-xeNeA&lib=MapPpBtNttTVeU4fydvpN6JhG3lFpo0w5')
     .then(function (response) {
         switch (response.status) {
             // status "OK"
