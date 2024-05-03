@@ -198,8 +198,8 @@ app.get('/profile', requiresAuth(), async function(req, res) {
 });
 
 // Route to handle proxying Google Drive links
-app.post('/proxy-google-drive', async (req, res) => {
-  const { googleDriveLink } = req.body;
+app.get('/proxy-google-drive', async (req, res) => {
+  const { googleDriveLink } = req.query;
 
   if (!googleDriveLink) {
       return res.status(400).json({ error: 'Google Drive link is required' });
