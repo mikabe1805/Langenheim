@@ -35,6 +35,14 @@ var jsonRouter = require('./routes/json');
 var data = require('./data/data');
 var http = require('http');
 var app = express();
+const axios = require('axios');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+
+// Middleware
+app.use(bodyParser.json());
+app.use(cors());
+
 // var cors = require('cors');
 var originsWhitelist = [
   'http://localhost:3101',
@@ -187,6 +195,32 @@ app.get('/profile', requiresAuth(), async function(req, res) {
                         layout: 'layout',
                         art: art,
                         profile: user });
+});
+
+// Route to handle proxying Google Drive links
+app.post('/proxy-google-drive', async (req, res) => {
+    const { googleDriveLink } = req.body;
+
+    if (!googleDriveLink) {
+        return res.status(400).json({ error: 'Google Drive link is required' });
+    }
+
+    try {
+        // Proxy the request to the Google Drive link
+        const response = await axios.get(googleDriveLink, {
+            responseType: 'stream', // Ensure response is streamed
+            headers: {
+                'User-Agent': 'UnityPlayer/5.3.5f1',
+                'Accept': '*/*'
+            }
+        });
+
+        // Pipe the response back to the Unity WebGL client
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error proxying Google Drive link:', error.message);
+        res.status(500).json({ error: 'Internal server error' });
+    }
 });
 
 var hbs = require('hbs');
