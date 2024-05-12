@@ -114,9 +114,6 @@ module.exports.getRandomArtwork = async () => {
   let jsonObj = [];
   let maxID = rows.length;
   let id = Math.floor(Math.random() * maxID);
-  while (id==69) { // invalid
-    id = Math.floor(Math.random() * maxID);
-  }
   id = "" + id;
   console.log(id);
   for (let index = 0; index < rows.length; index++) {
