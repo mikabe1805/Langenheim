@@ -1,7 +1,10 @@
 
   .container {
-      width: 50%;
+    width: 75%;
+    max-width: 75%;
+    height: auto;
   }
+    
   .pagination{
     display: flex;
     justify-content: center;
