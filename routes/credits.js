@@ -21,7 +21,7 @@ router.get('/', async function(req, res, next) {
     }
   }
 
-  res.render('credits', { title: 'BCAVAM', 
+  res.render('credits', { title: 'The Langenheim', 
                           layout: 'layout',
                           names: names});
 });

@@ -12,7 +12,7 @@
     }
 </style>
 <div class="input-group">
-    <input type="search" id="search" onkeypress="checkSearch(event)" name="search" class="form-control rounded" placeholder="Search the gallery..." aria-label="Search" aria-describedby="search-addon">
+    <input type="search" id="search" onkeypress="checkSearch(event)" name="search" class="form-control rounded" placeholder="Search through the name of the artist or artwork" aria-label="Search" aria-describedby="search-addon">
     <button onclick="searchByParams()" type="button" class="btn btn-outline-secondary" id="button-addon2"> Search </button>
 </div>
 
@@ -56,12 +56,12 @@
                 <a href="/artwork/{{page_number}}?id={{art_id}}">
                     <div class="frame">
                         <img src="{{art_source}}" class="img-fluid shadow-1-strong rounded mb-4">
-                        <div class="details">
+                        {{!-- <div class="details">
                             <h1 style="font-weight: bold;">{{art_title}}</h1>
                             <h4>by</h4>
                             <h2>{{art_creator}}</h2>
                             <h2>Class of {{grad_year}}</h2>
-                        </div>
+                        </div> --}}
                     </div>
                 </a>
                 <p>{{art_title}} by {{art_creator}}</p>
